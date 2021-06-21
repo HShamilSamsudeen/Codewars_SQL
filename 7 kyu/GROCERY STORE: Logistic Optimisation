@@ -1,0 +1,7 @@
+select
+producer,
+count(name) as count_products_types 
+from products
+group by producer
+order by count_products_types DESC,
+producer ASC;
