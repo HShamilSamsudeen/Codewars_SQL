@@ -1,0 +1,20 @@
+select
+customer_id,
+email,
+cast(total_amount as float),
+payments_count
+FROM
+(select 
+c.customer_id as customer_id,
+c.email as email,
+count(p.payment_id) as payments_count,
+sum(p.amount) as total_amount
+FROM customer c inner join payment p
+on c.customer_id = p.customer_id
+group by c.customer_id) as derivedtable
+GROUP BY derivedtable.customer_id,
+derivedtable.email,
+derivedtable.payments_count,
+derivedtable.total_amount
+Order by derivedtable.total_amount DESC
+Limit 10;
