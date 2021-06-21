@@ -1,0 +1,14 @@
+select
+t.id as id,
+t.heads as heads,
+t.arms as arms,
+b.legs as legs,
+b.tails as tails,
+CASE 
+WHEN heads>arms THEN 'BEAST'
+WHEN tails>legs THEN 'BEAST'
+ELSE 'WEIRDO'
+END AS species
+from top_half t inner join bottom_half b
+on t.id = b.id
+order by species 
