@@ -1,0 +1,4 @@
+select
+REPEAT(name, 3) as name,
+REVERSE(characteristics) as characteristics
+from monsters;
